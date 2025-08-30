@@ -46,6 +46,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
 		vim.api.nvim_set_hl(0, "TabLineNone", { bg = "NONE" })
 		vim.api.nvim_set_hl(0, "TabLine", { bg = "NONE" })
+
+		-- Make statusline transparent
+		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
 	end,
 })
 

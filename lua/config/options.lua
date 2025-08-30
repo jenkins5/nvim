@@ -29,8 +29,8 @@ opt.relativenumber = true -- show relative line numbers
 opt.cursorline     = true -- highlight current line
 opt.colorcolumn    = "100" -- highlight column 100
 opt.termguicolors  = true -- enable 24-bit color
--- opt.list           = true
--- opt.listchars      = 'tab:|\\ ,trail:▫'
+opt.list           = true
+opt.listchars      = 'tab:|\\ ,trail:▫'
 
 
 opt.wrap        = true
