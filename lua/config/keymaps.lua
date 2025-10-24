@@ -4,7 +4,7 @@ local mode_v = { "v" }
 local mode_nv = { "n", "v" }
 
 local keymap = {
-    { mode = mode_n,      from = "S",               to = "<cmd>w<CR>",                                              desc = "save file" },
+    -- { mode = mode_n,      from = "S",               to = "<cmd>w<CR>",                                              desc = "save file" },
     { mode = mode_n,      from = "Q",               to = "<cmd>q<CR>",                                              desc = "quit" },
     { mode = mode_nv,     from = ";",               to = ":",                                                       desc = "command-line mode" },
     { mode = mode_v,      from = "Y",               to = "\"+y",                                                    desc = "yank to sytem clipboard" },
@@ -27,6 +27,7 @@ local keymap = {
     { mode = mode_n,      from = "ci",              to = "cl",                                                      desc = "change one char" },
     { mode = mode_n,      from = "cn",              to = "ch",                                                      desc = "change left char" },
     { mode = mode_n,      from = "ck",              to = "ci",                                                      desc = "change inside object" },
+    { mode = mode_n,      from = "yk",              to = "yi",                                                      desc = "yank inside object" },
     { mode = mode_n,      from = "c,.",             to = "c%",                                                      desc = "change inside brackets" },
     { mode = mode_n,      from = "yh",              to = "ye",                                                      desc = "yank to work end" },
 
@@ -42,7 +43,7 @@ local keymap = {
 
 		-- Useful actions
     { mode = mode_nv,     from = ",.",              to = "%",                                                       desc = "jump to matching bracket" },
-    { mode = mode_i,      from = "<c-y>",           to = "<ESC>A {}<ESC>i<CR><ESC>ko",                              desc = "insert braces block" },
+    -- { mode = mode_i,      from = "<c-y>",           to = "<ESC>A {}<ESC>i<CR><ESC>ko",                              desc = "insert braces block" },
     { mode = mode_n,      from = "\\v",             to = "v$h",                                                     desc = "visual select to line end -1" },
     { mode = mode_i,      from = "<c-a>",           to = "<ESC>A",                                                  desc = "append at line end" },
 
@@ -54,16 +55,16 @@ local keymap = {
     { mode = mode_n,      from = "<leader>i",       to = "<C-w>l",                                                  desc = "move to window right" },
     { mode = mode_n,      from = "qf",              to = "<C-w>o",                                                  desc = "keep only current window" },
     { mode = mode_n,      from = "s",               to = "<nop>",                                                   desc = "disable default s" },
-    { mode = mode_n,      from = "su",              to = "<cmd>set nosplitbelow<CR>:split<CR>:set splitbelow<CR>",  desc = "split above" },
-    { mode = mode_n,      from = "se",              to = "<cmd>set splitbelow<CR>:split<CR>",                       desc = "split below" },
-    { mode = mode_n,      from = "sn",              to = "<cmd>set nosplitright<CR>:vsplit<CR>:set splitright<CR>", desc = "split left" },
-    { mode = mode_n,      from = "si",              to = "<cmd>set splitright<CR>:vsplit<CR>",                      desc = "split right" },
+    -- { mode = mode_n,      from = "su",              to = "<cmd>set nosplitbelow<CR>:split<CR>:set splitbelow<CR>",  desc = "split above" },
+    -- { mode = mode_n,      from = "se",              to = "<cmd>set splitbelow<CR>:split<CR>",                       desc = "split below" },
+    -- { mode = mode_n,      from = "sn",              to = "<cmd>set nosplitright<CR>:vsplit<CR>:set splitright<CR>", desc = "split left" },
+    -- { mode = mode_n,      from = "si",              to = "<cmd>set splitright<CR>:vsplit<CR>",                      desc = "split right" },
     { mode = mode_n,      from = "<up>",            to = "<cmd>res +5<CR>",                                         desc = "increase window height" },
     { mode = mode_n,      from = "<down>",          to = "<cmd>res -5<CR>",                                         desc = "decrease window height" },
     { mode = mode_n,      from = "<left>",          to = "<cmd>vertical resize -5<CR>",                             desc = "decraase window left" },
     { mode = mode_n,      from = "<right>",         to = "<cmd>vertical resize +5<CR>",                             desc = "increase window right" },
-    { mode = mode_n,      from = "srh",             to = "<C-w>b<C-w>K",                                            desc = "move window to top (horizontal)" },
-    { mode = mode_n,      from = "srv",             to = "<C-w>b<C-w>H",                                            desc = "move window to left (vertical)" },
+    -- { mode = mode_n,      from = "srh",             to = "<C-w>b<C-w>K",                                            desc = "move window to top (horizontal)" },
+    -- { mode = mode_n,      from = "srv",             to = "<C-w>b<C-w>H",                                            desc = "move window to left (vertical)" },
 
 		-- Tab management
     { mode = mode_n,      from = "tu",              to = "<cmd>tabe<CR>",                                           desc = "new tab" },
@@ -77,9 +78,10 @@ local keymap = {
 		-- Other
     { mode = mode_n,      from = "<leader>sw",      to = "<cmd>set wrap!<CR>",                                      desc = "toggle warp" },
     { mode = mode_n,      from = "<leader>sc",      to = "<cmd>set spell!<CR>",                                     desc = "toggle spell check" },
-    { mode = mode_n,      from = "<leader>ss",      to = ":%s/\\<<C-r><C-w>\\>//g<left><left>",                     desc = "global replacement", noise = true },
+    -- { mode = mode_n,      from = "<leader>ss",      to = ":%s/\\<<C-r><C-w>\\>//g<left><left>",                     desc = "global replacement", noise = true },
     { mode = mode_n,      from = ",v",              to = "v%",                                                      desc = "select inside matching brackets" },
     { mode = mode_n,      from = "<leader><esc>",   to = "<nop>",                                                   desc = "disable accidental <leader><esc>" },
+    { mode = mode_n,      from = "<leader>p",       to = "<cmd>Lazy<CR>",                                           desc = "open Lazy plugin manager" },
 }
 
 for _, mapping in ipairs(keymap) do

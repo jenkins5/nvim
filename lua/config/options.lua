@@ -59,3 +59,4 @@ opt.foldmethod     = "manual"
 opt.foldlevel      = 99
 opt.foldlevelstart = -1
 
+require("utils.highlight")
