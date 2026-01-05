@@ -35,28 +35,29 @@ return {
 				-- nix = { "nixfmt" },
 				haskell = { "fourmolu" },
 			},
+
 			formatters = {
-				--[[ clang_format = {
+				clang_format = {
 					command = "clang-format",
-				}, ]]
+				},
 				prettier = {
 					prepend_args = {
 						"--tab-width 2",
 					},
 				},
 				["google-java-format"] = {
-					command = vim.fn.stdpath("data") .. "/mason/bin/google-java-format",
+					-- command = vim.fn.stdpath("data") .. "/mason/bin/google-java-format",
 					prepend_args = { "--aosp" }, -- 使用 4 空格缩进的 AOSP 风格
 					timeout_ms = 10000,
 				},
-				isort = {
+				--[[ isort = {
 					command = vim.fn.stdpath("data") .. "/mason/bin/isort",
-					timeout_ms = 10000,
+					timeout_ms = 5000,
 				},
 				black = {
 					command = vim.fn.stdpath("data") .. "/mason/bin/black",
-					timeout_ms = 10000,
-				},
+					timeout_ms = 5000,
+				}, ]]
 			},
 		})
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

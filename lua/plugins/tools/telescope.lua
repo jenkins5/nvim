@@ -48,7 +48,7 @@ local opts = {
 				-- end,
 			},
 			i = {
-				["<esc>"] = "close",
+				-- ["<esc>"] = "close",
 				["<A-q>"] = "close",
 				["<C-s>"] = flash,
 				["<C-e>"] = "move_selection_next",

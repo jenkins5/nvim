@@ -56,13 +56,14 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
-		cmd = {
+		--[[ cmd = {
 			"MasonToolsInstall",
 			"MasonToolsInstallSync",
 			"MasonToolsUpdate",
 			"MasonToolsUpdateSync",
 			"MasonToolsClean",
-		},
+		}, ]]
+		event = "VeryLazy",
 		config = function()
 			local installed = require("utils.server").tools
 
@@ -72,6 +73,9 @@ return {
 
 			require("mason-tool-installer").setup({
 				ensure_installed = installed,
+				run_on_start = true,
+				start_delay = 3000, -- 3 second delay
+				-- auto_update = true,
 			})
 		end,
 	},

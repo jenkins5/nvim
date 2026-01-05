@@ -6,6 +6,7 @@ M.lsp = {
 	"html",
 	-- "volar",
 	"astro",
+	"clangd",
 	"ts_ls",
 	"gopls",
 	"lua_ls",
@@ -45,7 +46,7 @@ local system = {
 	-- lsp
 	"hls",
 	"nixd",
-	"clangd",
+	-- "clangd",
 	-- "pyright",
 }
 
