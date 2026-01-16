@@ -5,4 +5,5 @@ return {
 	{ import = "plugins.tools" },
 	{ import = "plugins.theme" },
 	{ import = "plugins.ui" },
+	{ import = "plugins.git" },
 }
