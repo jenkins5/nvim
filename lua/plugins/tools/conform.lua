@@ -15,25 +15,24 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				cpp = { "clang_format" },
-				go = { "goimports", "gofmt" },
-				python = { "isort", "black" },
-				-- python = { "ruff_fix", "ruff_format" },
-				lua = { "stylua" },
-				rust = { "rustfmt" },
-				html = { "prettier" },
 				astro = { "prettier" },
+				cpp = { "clang_format" },
+				css = { "prettier" },
+				go = { "goimports", "gofmt" },
+				-- nix = { "nixfmt" },
+				html = { "prettier" },
 				java = { "google-java-format" },
 				javascript = { "prettier" },
-				typescript = { "prettier" },
-				markdown = { "prettier" },
-				css = { "prettier" },
 				javascriptreact = { "prettier" },
+				lua = { "stylua" },
+				markdown = { "prettier" },
+				-- python = { "isort", "black" },
+				python = { "ruff_organize_imports", "ruff_format" },
+				rust = { "rustfmt" },
+				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
-				yaml = { "prettier" },
 				typst = { "typstyle" },
-				-- nix = { "nixfmt" },
-				haskell = { "fourmolu" },
+				yaml = { "prettier" },
 			},
 
 			formatters = {
@@ -42,22 +41,15 @@ return {
 				},
 				prettier = {
 					prepend_args = {
-						"--tab-width 2",
+						"--config-precedence prefer-file",
+						"--vue-indent-script-and-style",
+						"--experimental-ternaries",
+						"--bracket-same-line",
 					},
 				},
 				["google-java-format"] = {
-					-- command = vim.fn.stdpath("data") .. "/mason/bin/google-java-format",
-					prepend_args = { "--aosp" }, -- 使用 4 空格缩进的 AOSP 风格
-					timeout_ms = 10000,
+					prepend_args = { "--aosp" }, -- Use AOSP style 4 space indent
 				},
-				--[[ isort = {
-					command = vim.fn.stdpath("data") .. "/mason/bin/isort",
-					timeout_ms = 5000,
-				},
-				black = {
-					command = vim.fn.stdpath("data") .. "/mason/bin/black",
-					timeout_ms = 5000,
-				}, ]]
 			},
 		})
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

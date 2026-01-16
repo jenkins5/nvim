@@ -24,7 +24,10 @@ return {
 
 							local client_names = {}
 							for _, client in ipairs(clients) do
-								table.insert(client_names, client.name)
+								-- table.insert(client_names, client.name)
+								if client.name ~= "copilot" then
+									table.insert(client_names, client.name)
+								end
 							end
 
 							return "LSP [" .. table.concat(client_names, ", ") .. "]"

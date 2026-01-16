@@ -26,34 +26,11 @@ local opts = function(_, opts)
 					debug = { modes = { n = "gd" } },
 				},
 				tools = {
-					-- opts = { default_tools = { "native", "mcp" } },
 					opts = {
 						default_tools = { "tools" },
 					},
 
 					groups = {
-						--[[ native = {
-							description = "commonly used tools",
-							prompt = "I'm giving you access to the ${tools} to help you perform coding tasks",
-							tools = {
-								"read_file",
-								"cmd_runner",
-								"create_file",
-								"file_search",
-								"grep_search",
-								"list_code_usages",
-								"get_changed_files",
-								"insert_edit_into_file",
-							},
-						},
-
-						mcp = {
-							description = "MCP tools from MCPHub",
-							callback = function()
-								-- 由 mcphub.nvim 提供的扩展，会把所有 MCP 工具注册到 CodeCompanion
-								return require("mcphub.extensions.codecompanion")
-							end,
-						}, ]]
 						["tools"] = {
 							description = "commonly used tools",
 							prompt = "I'm giving you access to the ${tools} to help you perform coding tasks",
@@ -90,18 +67,24 @@ local opts = function(_, opts)
 			chat = {
 				window = {
 					width = 0.35,
-					opts = { number = false, numberwidth = 1 },
+					opts = { number = false, numberwidth = 1, foldcolumn = "0", signcolumn = "no" },
 				},
 				intro_message = "Welcome to CodeCompanion ✨!",
+			},
+		},
+		rules = {
+			opts = {
+				chat = {
+					enabled = true,
+					default_rules = "default",
+				},
 			},
 		},
 		adapters = {
 			http = {
 				copilot = function()
 					return extend("copilot", {
-						-- schema = { model = { default = "claude-sonnet-4.5" } },
-						-- schema = { model = { default = "claude-sonnet-4.5" } },
-						schema = { model = { default = "gemini-3-pro-preview" } },
+						schema = { model = { default = "claude-sonnet-4.5" } },
 					})
 				end,
 				gemini = function()
@@ -146,7 +129,6 @@ end
 ---@type LazyPluginSpec
 return {
 	"olimorris/codecompanion.nvim",
-	version = "v17.33.0",
 	dependencies = {
 		"ravitemer/codecompanion-history.nvim",
 		"ravitemer/mcphub.nvim",

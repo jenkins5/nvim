@@ -29,7 +29,8 @@ local config = function()
 
 	vim.diagnostic.config({
 		-- virtual_text = { spacing = 4 },
-		virtual_lines = { current_line = true },
+		-- virtual_lines = { current_line = true },
+		virtual_text = false,
 		jump = { float = true },
 		float = {
 			border = custom.border,
@@ -65,18 +66,33 @@ local config = function()
 
 			-- inlay hints
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			if client and client.server_capabilities.inlayHintProvider then
+			--[[ if client and client.server_capabilities.inlayHintProvider then
 				vim.lsp.inlay_hint.enable(true)
+			end ]]
+			if client then
+				if client:supports_method("textDocument/inlayHint") then
+					vim.lsp.inlay_hint.enable(true)
+				end
+				if vim.fn.has("nvim-0.12") == 1 and client:supports_method("textDocument/documentColor") then
+					vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
+				end
 			end
 		end,
 	})
 
-	if vim.version().prerelease == "dev" then
+	--[[ if vim.version().prerelease == "dev" then
 		vim.keymap.del("n", "gri")
 		vim.keymap.del("n", "gra")
 		vim.keymap.del("n", "grn")
 		vim.keymap.del("n", "grr")
 		vim.api.nvim_command("LspStart")
+	end ]]
+	if vim.fn.has("nvim-0.11") == 1 then
+		vim.keymap.del("n", "gri")
+		vim.keymap.del("n", "gra")
+		vim.keymap.del("n", "grn")
+		vim.keymap.del("n", "grr")
+		vim.keymap.del("n", "grt")
 	end
 end
 
@@ -97,6 +113,19 @@ return {
 		event = "LspAttach",
 		opts = {
 			autocmd = { enabled = true },
+		},
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach",
+		opts = {
+			options = {
+				use_icons_from_diagnostic = true,
+				multilines = {
+					enabled = true,
+					always_show = true,
+				},
+			},
 		},
 	},
 }
