@@ -1,5 +1,6 @@
 return {
 	{ import = "plugins.complete" },
+	{ import = "plugins.dap" },
 	{ import = "plugins.lang" },
 	{ import = "plugins.edit" },
 	{ import = "plugins.tools" },
