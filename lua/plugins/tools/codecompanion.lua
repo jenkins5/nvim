@@ -109,9 +109,7 @@ local opts = function(_, opts)
 				opts = {
 					keymap = "gh",
 					auto_save = true,
-					-- picker = vim.uv.os_uname().sysname == "Windows_NT" and "snacks" or "fzf-lua",
-					picker = vim.uv.os_uname().sysname == "Windows_NT" and "snacks" or "telescope",
-					-- picker = vim.uv.os_uname().sysname == "Darwin" and "snacks" or "telescope",
+					picker = "telescope",
 					picker_keymaps = { delete = { n = "d", i = "<C-x>" } },
 					initial_mode = "normal",
 					save_chat_keymap = "gs",

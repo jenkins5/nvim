@@ -43,7 +43,7 @@ opt.showmode = true
 opt.wildmenu = true
 opt.laststatus = 3
 -- opt.inccommand  = "split"
-opt.viewoptions = "cursor,folds,slash,unix"
+-- opt.viewoptions = "cursor,folds,slash,unix"
 
 -- Search
 opt.incsearch = true -- search as characters are entered
@@ -59,6 +59,7 @@ opt.foldenable = true
 opt.foldmethod = "manual"
 -- vim.o.foldcolumn   = "1"
 opt.foldlevel = 99
-opt.foldlevelstart = -1
+opt.foldlevelstart = 99
+opt.viewoptions = "cursor,slash,unix"
 
 require("utils.highlight")

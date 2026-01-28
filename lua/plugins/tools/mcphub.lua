@@ -1,7 +1,6 @@
 return {
 	"ravitemer/mcphub.nvim",
-	-- cmd = "MCPHub",
-	event = "VeryLazy",
+	cmd = "MCPHub",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	build = "bundled_build.lua",
 	opts = {
@@ -11,7 +10,11 @@ return {
 		auto_connect = true,
 		register_neovim_server = true,
 		auto_start_hub = true,
-		-- log_level = "info",
 		log_level = "debug",
+		ui = {
+			window = {
+				border = "rounded",
+			},
+		},
 	},
 }

@@ -29,16 +29,5 @@ return {
 				enable = false,
 			},
 		})
-
-		-- 为不同文件类型设置缩进
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = "java",
-			callback = function()
-				vim.opt_local.tabstop = 4
-				vim.opt_local.shiftwidth = 4
-				vim.opt_local.expandtab = true
-				vim.opt_local.softtabstop = 4
-			end,
-		})
 	end,
 }

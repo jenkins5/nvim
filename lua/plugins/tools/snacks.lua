@@ -116,23 +116,19 @@ local function keys()
 	local function snack(name)
 		return ("<cmd>lua Snacks.picker." .. name .. "()<CR>")
 	end
-	if vim.uv.os_uname().sysname == "Windows_NT" then
-		return {
-			{ "<leader>tc", snack("commands"), desc = "commands picker" },
-			{ "<leader>tk", snack("keymaps"), desc = "keymaps picker" },
-			{ "<leader>tl", snack("highlights"), desc = "highlights picker" },
-			{ "<leader>th", snack("help"), desc = "help picker" },
-			{ "<leader>f", snack("smart"), desc = "find files" },
-			{ "<leader>r", snack("recent"), desc = "recent files" },
-			{ "<leader>w", snack("grep"), desc = "live grep" },
-			{ "<tab><tab>", snack("buffers"), desc = "buffers" },
-		}
-	else
-		return {
-			{ "<tab><tab>", snack("buffers"), desc = "buffers" },
-			{ "<leader>tp", snack("lazy"), desc = "lazy packers" },
-		}
-	end
+	return {
+		-- { "<tab><tab>", snack("buffers"), desc = "buffers" },
+		-- { "<leader>tc", snack("commands"), desc = "commands picker" },
+		-- { "<leader>tk", snack("keymaps"), desc = "keymaps picker" },
+		-- { "<leader>tl", snack("highlights"), desc = "highlights picker" },
+		-- { "<leader>th", snack("help"), desc = "help picker" },
+		-- { "<leader>tp", snack("lazy"), desc = "lazy packers" },
+		-- { "<leader>ff", snack("smart"), desc = "find files" },
+		-- { "<leader>w", snack("grep"), desc = "live grep" },
+		-- { "<leader>r", snack("recent"), desc = "recent files" },
+		-- { "<leader>l", snack("undo"), desc = "undo history" },
+		{ "<leader>h",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+	}
 end
 
 return {
@@ -147,9 +143,7 @@ return {
 		dashboard = {
 			preset = {
 				keys = {
-					-- { icon = " ", key = "f", desc = "Find file", action = "<cmd>FzfLua files<CR>" },
 					{ icon = " ", key = "f", desc = "Find file", action = "<cmd>Telescope find_files<CR>" },
-					-- { icon = " ", key = "r", desc = "Recently used files", action = "<cmd>FzfLua oldfiles<CR>" },
 					{ icon = " ", key = "r", desc = "Recently used files", action = "<cmd>Telescope oldfiles<CR>" },
 					{ icon = "󰂖 ", key = "p", desc = "Plugins", action = "<cmd>Lazy<CR>" },
 					{ icon = "󰅚 ", key = "q", desc = "Quit Neovim", action = "<cmd>qa<CR>" },
@@ -195,7 +189,26 @@ return {
 			ui_select = false,
 			layouts = { ivy = ivy, select = select },
 			win = {
-				input = { keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } },
+				input = {
+					keys = {
+						-- ["<Esc>"] = { "close", mode = { "n", "i" } },
+						["<Esc>"] = { "close", mode = { "n" } },
+						["<C-e>"] = { "list_down", mode = { "n", "i" } },
+						["<C-u>"] = { "list_up", mode = { "n", "i" } },
+
+						-- normal 模式下的操作
+						["q"] = { "close", mode = { "n" } },
+						["zh"] = { "edit_split", mode = { "n" } },
+						["zv"] = { "edit_vsplit", mode = { "n" } },
+					},
+				},
+				list = {
+					keys = {
+						["q"] = "close",
+						["zh"] = "edit_split",
+						["zv"] = "edit_vsplit",
+					},
+				},
 			},
 			layout = {
 				preset = function(type)

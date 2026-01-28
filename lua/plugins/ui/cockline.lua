@@ -1,8 +1,11 @@
 return {
 	"willothy/nvim-cokeline",
 	keys = {
-		{ "[b", "<Plug>(cokeline-focus-prev)", desc = "previous buffer" },
-		{ "]b", "<Plug>(cokeline-focus-next)", desc = "next buffer" },
+		{ "tn", "<Plug>(cokeline-focus-prev)", desc = "previous buffer" },
+		{ "ti", "<Plug>(cokeline-focus-next)", desc = "next buffer" },
+		{ "tq", "<cmd>bd<CR>", desc = "close current buffer" },
+		{ "tmn", "<Plug>(cokeline-switch-prev)", desc = "move buffer left" },
+		{ "tmi", "<Plug>(cokeline-switch-next)", desc = "move buffer right" },
 	},
 	event = { "BufRead", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },

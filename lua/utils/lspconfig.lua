@@ -12,6 +12,20 @@ M.config = {
 			},
 		},
 	},
+	basedpyright = {
+		cmd = { "basedpyright-langserver", "--stdio" },
+		filetypes = { "python" },
+		settings = {
+			basedpyright = {
+				typeCheckingMode = "off",
+				analysis = {
+					autoSearchPaths = true,
+					diagnosticMode = "openFilesOnly",
+					useLibraryCodeForTypes = true,
+				},
+			},
+		},
+	},
 	clangd = {
 		filetypes = { "cpp", "c" },
 		cmd = {
@@ -83,23 +97,13 @@ M.config = {
 			},
 		},
 	},
-	pyright = {
+	--[[ pyright = {
 		cmd = { "delance-langserver", "--stdio" },
 		settings = {
 			python = {
-				-- disableOrganizeImports = true,
 				pythonPath = vim.fn.exepath("python"),
-				-- pythonPath = vim.fn.getcwd() .. "/venv/bin/python",
-				-- pythonPath = vim.fn.exepath("python"),
 				analysis = {
-					-- venvPath = vim.fn.getcwd(),
 					extraPaths = { vim.fn.getcwd() },
-					-- venv = "venv",
-					-- extraPaths = { vim.fn.getcwd() },
-					-- ignore = { "*" },
-					-- autoSearchPaths = true,
-					-- useLibraryCodeForTypes = true,
-					-- typeCheckingMode = "basic",
 					inlayHints = {
 						callArgumentNames = "partial",
 						functionReturnTypes = true,
@@ -109,7 +113,7 @@ M.config = {
 				},
 			},
 		},
-	},
+	}, ]]
 	ruff = {
 		cmd = { "ruff", "server" },
 		filetypes = { "python" },
@@ -165,6 +169,30 @@ M.config = {
 			},
 		},
 		filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+		settings = {
+			typescript = {
+				inlayHints = {
+					includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
+			},
+			javascript = {
+				inlayHints = {
+					includeInlayParameterNameHints = "all",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
+				},
+			},
+		},
 	},
 	yamlls = {
 		cmd = { "yaml-language-server", "--stdio" },

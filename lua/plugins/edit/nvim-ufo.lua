@@ -2,35 +2,6 @@ return {
 	"kevinhwang91/nvim-ufo",
 	event = "BufReadPost",
 	dependencies = "kevinhwang91/promise-async",
-	--[[ init = function()
-		local set_foldcolumn_for_file = vim.api.nvim_create_augroup("set_foldcolumn_for_file", {
-			clear = true,
-		})
-		vim.api.nvim_create_autocmd("BufWinEnter", {
-			group = set_foldcolumn_for_file,
-			callback = function()
-				if vim.bo.buftype == "" then
-					vim.wo.foldcolumn = "1"
-				else
-					vim.wo.foldcolumn = "0"
-				end
-			end,
-		})
-		vim.api.nvim_create_autocmd("OptionSet", {
-			group = set_foldcolumn_for_file,
-			pattern = "buftype",
-			callback = function()
-				if vim.bo.buftype == "" then
-					vim.wo.foldcolumn = "1"
-				else
-					vim.wo.foldcolumn = "0"
-				end
-			end,
-		})
-		vim.o.foldlevel = 99
-		vim.o.foldlevelstart = 99
-		vim.o.foldenable = true
-	end, ]]
 	config = function()
 		-- virtual icon
 		local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -71,9 +42,42 @@ return {
 		})
 		---@diagnostic disable-next-line: missing-fields
 		require("ufo").setup({
+			provider_selector = function(bufnr, filetype, buftype)
+				if buftype ~= "" then
+					return ""
+				end
+
+				-- 大文件用 indent
+				local line_count = vim.api.nvim_buf_line_count(bufnr)
+				if line_count > 10000 then
+					return "indent"
+				end
+
+				-- node_modules / 只读用 indent
+				local filepath = vim.api.nvim_buf_get_name(bufnr)
+				if filepath:match("node_modules") or vim.bo[bufnr].readonly then
+					return "indent"
+				end
+
+				-- 已知没有好的 LSP 折叠支持
+				local use_indent = { "python", "yaml" }
+				if vim.tbl_contains(use_indent, filetype) then
+					return "indent"
+				end
+
+				-- 已知有 treesitter 但 LSP 折叠不好
+				local use_ts = { "markdown", "json" }
+				if vim.tbl_contains(use_ts, filetype) then
+					return { "treesitter", "indent" }
+				end
+
+				-- 其他：LSP 优先（ufo 会自动 fallback）
+				return { "lsp", "indent" }
+			end,
+
 			close_fold_kinds_for_ft = {
 				default = { "imports", "comment" },
-				c = { "comment", "region" },
+				-- c = { "comment", "region" },
 			},
 			fold_virt_text_handler = handler,
 		})

@@ -1,6 +1,5 @@
 local config = function()
 	local custom = require("custom")
-	-- local lspconfig = require("lspconfig")
 	local server = require("utils.server").server
 
 	require("lspconfig.ui.windows").default_options.border = "rounded"
@@ -9,18 +8,11 @@ local config = function()
 		local set = function(keys, func, indesc)
 			vim.keymap.set("n", keys, func, { buffer = bufnr, desc = indesc })
 		end
-		-- set("gr", "<cmd>FzfLua lsp_references<CR>", "[R]eferences")
 		set("gr", require("telescope.builtin").lsp_references, "[R]eferences")
-		-- set("gi", "<cmd>FzfLua lsp_implementations<CR>", "[I]mplementations")
-		-- set("gi", vim.lsp.buf.implementation, "implementation")
-		set("gi", require("telescope.builtin").lsp_implementations, "implementation")
+		set("gi", require("telescope.builtin").lsp_implementations, "[I]mplementations")
 		set("gk", vim.lsp.buf.signature_help, "LSP Signature help")
-		-- set("gD", "<cmd>FzfLua lsp_document_symbols<CR>", "[D]oc symbols")
-		-- set("gD", vim.lsp.buf.declaration, "declaration")
 		set("gD", require("telescope.builtin").lsp_document_symbols, "[D]oc symbols")
-		-- set("gd", "<cmd>lua require('fzf-lua').lsp_definitions{ jump1 = true }<CR>", "definition")
-		-- set("gd", vim.lsp.buf.definition, "definition")
-		set("gd", require("telescope.builtin").lsp_definitions, "definition")
+    set("gd", require("telescope.builtin").lsp_definitions, "[D]efinition")
 		set("<leader>ca", require("fastaction").code_action, "[C]ode [A]ction")
 		set("<leader>cn", vim.lsp.buf.rename, "[C]ode Item Re[N]ame")
 		set("<leader>ct", vim.lsp.buf.type_definition, "[C]ode [T]ype definition")
@@ -66,9 +58,6 @@ local config = function()
 
 			-- inlay hints
 			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			--[[ if client and client.server_capabilities.inlayHintProvider then
-				vim.lsp.inlay_hint.enable(true)
-			end ]]
 			if client then
 				if client:supports_method("textDocument/inlayHint") then
 					vim.lsp.inlay_hint.enable(true)
@@ -80,13 +69,6 @@ local config = function()
 		end,
 	})
 
-	--[[ if vim.version().prerelease == "dev" then
-		vim.keymap.del("n", "gri")
-		vim.keymap.del("n", "gra")
-		vim.keymap.del("n", "grn")
-		vim.keymap.del("n", "grr")
-		vim.api.nvim_command("LspStart")
-	end ]]
 	if vim.fn.has("nvim-0.11") == 1 then
 		vim.keymap.del("n", "gri")
 		vim.keymap.del("n", "gra")

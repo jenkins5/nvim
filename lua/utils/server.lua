@@ -4,6 +4,7 @@ local M = { server = {} }
 
 M.lsp = {
 	"astro",
+	"basedpyright",
 	"clangd",
 	"gopls",
 	"html",
@@ -12,7 +13,7 @@ M.lsp = {
 	"lua_ls",
 	"marksman",
 	"mdx_analyzer",
-	"pyright",
+	-- "pyright",
 	"ruff",
 	"solidity_ls",
 	"tailwindcss",

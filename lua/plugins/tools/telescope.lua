@@ -143,27 +143,17 @@ local opts = {
 }
 
 local keys = function()
-	if vim.uv.os_uname().sysname == "Darwin" then
-		return {
-			{ "<Tab><Tab>", "<cmd>Telescope buffers<CR>", desc = "buffers" },
-			{ "<leader>tc", "<cmd>Telescope commands<CR>", desc = "telescope commands" },
-			{ "<leader>tk", "<cmd>Telescope keymaps<CR>", desc = "telescope keymaps" },
-			{ "<leader>tl", "<cmd>Telescope highlights<CR>", desc = "telescope highlights" },
-			{ "<leader>th", "<cmd>Telescope help_tags<CR>", desc = "telescope highlights" },
-			{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },
-			{ "<leader>w", "<cmd>Telescope live_grep<CR>", desc = "live grep" },
-			{ "<leader>r", "<cmd>Telescope oldfiles<CR>", desc = "recent files" },
-			{ "<leader>l", "<cmd>Telescope undo<CR>", desc = "undo tree" },
-		}
-	else
-		return {
-			{ "<Tab><Tab>", "<cmd>Telescope buffers<CR>", desc = "buffers" },
-			{ "<leader>tc", "<cmd>Telescope commands<CR>", desc = "telescope commands" },
-			{ "<leader>tk", "<cmd>Telescope keymaps<CR>", desc = "telescope keymaps" },
-			{ "<leader>tl", "<cmd>Telescope highlights<CR>", desc = "telescope highlights" },
-			{ "<leader>th", "<cmd>Telescope help_tags<CR>", desc = "telescope highlights" },
-		}
-	end
+	return {
+		{ "<Tab><Tab>", "<cmd>Telescope buffers<CR>", desc = "buffers" },
+		{ "<leader>tc", "<cmd>Telescope commands<CR>", desc = "telescope commands" },
+		{ "<leader>tk", "<cmd>Telescope keymaps<CR>", desc = "telescope keymaps" },
+		{ "<leader>tl", "<cmd>Telescope highlights<CR>", desc = "telescope highlights" },
+		{ "<leader>th", "<cmd>Telescope help_tags<CR>", desc = "telescope help" },
+		{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },
+		{ "<leader>w", "<cmd>Telescope live_grep<CR>", desc = "live grep" },
+		{ "<leader>r", "<cmd>Telescope oldfiles<CR>", desc = "recent files" },
+		{ "<leader>l", "<cmd>Telescope undo<CR>", desc = "undo tree" },
+	}
 end
 
 return {

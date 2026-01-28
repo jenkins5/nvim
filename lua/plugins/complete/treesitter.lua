@@ -42,6 +42,9 @@ return {
 			},
 			incremental_selection = {
 				enable = true,
+				disable = function(_, bufnr)
+					return vim.bo[bufnr].filetype == "codecompanion"
+				end,
 				keymaps = {
 					init_selection = "<CR>",
 					node_incremental = "<CR>",
@@ -52,6 +55,9 @@ return {
 			textobjects = {
 				select = {
 					enable = true,
+					disable = function(_, bufnr)
+						return vim.bo[bufnr].filetype == "codecompanion"
+					end,
 					lookahead = true,
 					keymaps = {
 						["aa"] = { query = "@parameter.outer", desc = "a argument" },
