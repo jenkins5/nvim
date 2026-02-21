@@ -1,5 +1,6 @@
 return {
 	"ravitemer/mcphub.nvim",
+	enabled = false,
 	cmd = "MCPHub",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	build = "bundled_build.lua",

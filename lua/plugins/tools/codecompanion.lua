@@ -127,6 +127,7 @@ end
 ---@type LazyPluginSpec
 return {
 	"olimorris/codecompanion.nvim",
+	enabled = false,
 	dependencies = {
 		"ravitemer/codecompanion-history.nvim",
 		"ravitemer/mcphub.nvim",

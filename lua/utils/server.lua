@@ -5,6 +5,7 @@ local M = { server = {} }
 M.lsp = {
 	"astro",
 	"basedpyright",
+	"buf_ls",
 	"clangd",
 	"gopls",
 	"html",
@@ -13,7 +14,6 @@ M.lsp = {
 	"lua_ls",
 	"marksman",
 	"mdx_analyzer",
-	-- "pyright",
 	"ruff",
 	"solidity_ls",
 	"tailwindcss",
@@ -27,12 +27,11 @@ M.lsp = {
 
 M.tools = {
 	-- formatter
-	"black",
+	"buf",
 	"clang-format",
 	"gofmt",
 	"goimports",
 	"google-java-format",
-	"isort",
 	"prettier",
 	"ruff",
 	"rustfmt",
@@ -51,8 +50,7 @@ local system = {
 	-- lsp
 	"hls",
 	"nixd",
-	-- "clangd",
-	-- "pyright",
+	"sourcekit",
 }
 
 custom.register(M.server, M.lsp, config)

@@ -2,6 +2,7 @@ local custom = require("custom")
 
 return {
 	"akinsho/toggleterm.nvim",
+	cmd = { "ToggleTerm", "TermExec" },
 	opts = {
 		size = function(term)
 			if term.direction == "horizontal" then
@@ -10,7 +11,7 @@ return {
 				return vim.o.columns * 0.4
 			end
 		end,
-		open_mapping = [[<c-\>]],
+
 		on_create = function(t)
 			local bufnr = t.bufnr
 			vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { buffer = bufnr })
@@ -62,19 +63,15 @@ return {
 		})
 
 		return {
-			{ "<C-\\>" },
-			{ "`", "<cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Terminal" },
 			{
-				"`",
-				function()
-					vim.cmd("ToggleTerm")
-					if vim.fn.mode() == "n" then
-						vim.cmd("startinsert")
-					end
-				end,
-				mode = "t",
-				desc = "Terminal",
+				"<C-\\>",
+				"<cmd>1ToggleTerm direction=horizontal<cr>",
+				mode = { "n", "t" },
+				desc = "Toggle Horizontal Terminal",
 			},
+			{ "`", "<cmd>2ToggleTerm direction=vertical<cr>", mode = { "n", "t" }, desc = "Toggle Vertical Terminal" },
+
+			{ "<leader>tt", "<cmd>TermSelect<cr>", desc = "Select Terminal" },
 
 			-- External programs
 			{

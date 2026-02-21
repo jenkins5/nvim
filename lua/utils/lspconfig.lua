@@ -97,23 +97,6 @@ M.config = {
 			},
 		},
 	},
-	--[[ pyright = {
-		cmd = { "delance-langserver", "--stdio" },
-		settings = {
-			python = {
-				pythonPath = vim.fn.exepath("python"),
-				analysis = {
-					extraPaths = { vim.fn.getcwd() },
-					inlayHints = {
-						callArgumentNames = "partial",
-						functionReturnTypes = true,
-						pytestParameters = true,
-						variableTypes = true,
-					},
-				},
-			},
-		},
-	}, ]]
 	ruff = {
 		cmd = { "ruff", "server" },
 		filetypes = { "python" },
@@ -124,6 +107,16 @@ M.config = {
 	solidity_ls = {
 		cmd = { "vscode-solidity-server", "--stdio" },
 		filetypes = { "solidity" },
+	},
+	sourcekit = {
+		cmd = { "sourcekit-lsp" },
+		filetypes = { "swift", "objc", "objcpp" },
+		root_markers = {
+			"Package.swift",
+			".git",
+			"compile_commands.json",
+			"compile_flags.txt",
+		},
 	},
 	tailwindcss = {
 		filetypes = {
