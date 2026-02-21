@@ -13,6 +13,7 @@ local session_config = {
 
 return {
 	"stevearc/dressing.nvim",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		select = {
 			backend = { "fzf_lua", "telescope" },

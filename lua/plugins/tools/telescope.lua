@@ -173,7 +173,6 @@ return {
 			"nvim-lua/popup.nvim",
 			"debugloop/telescope-undo.nvim",
 		},
-		event = { "CursorHold", "CursorHoldI" },
 		keys = keys(),
 		cmd = "Telescope",
 		opts = opts,

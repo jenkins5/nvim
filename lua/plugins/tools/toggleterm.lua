@@ -24,43 +24,54 @@ return {
 		},
 	},
 	keys = function()
-		local float_opts = {
-			border = custom.border,
-		}
+		local float_opts = { border = custom.border }
+		local lazygit, yazi, coderunner
 
-		local lazygit = require("toggleterm.terminal").Terminal:new({
-			cmd = "lazygit",
-			hidden = true,
-			direction = "float",
-			float_opts = float_opts,
-			on_create = function(t)
-				local bufnr = t.bufnr
-				vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = bufnr })
-			end,
-		})
+		local function get_lazygit()
+			if not lazygit then
+				lazygit = require("toggleterm.terminal").Terminal:new({
+					cmd = "lazygit",
+					hidden = true,
+					direction = "float",
+					float_opts = float_opts,
+					on_create = function(t)
+						vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = t.bufnr })
+					end,
+				})
+			end
+			return lazygit
+		end
 
-		local yazi = require("toggleterm.terminal").Terminal:new({
-			cmd = "yazi",
-			hidden = true,
-			direction = "float",
-			float_opts = float_opts,
-			on_create = function(t)
-				local bufnr = t.bufnr
-				vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = bufnr })
-			end,
-		})
+		local function get_yazi()
+			if not yazi then
+				yazi = require("toggleterm.terminal").Terminal:new({
+					cmd = "yazi",
+					hidden = true,
+					direction = "float",
+					float_opts = float_opts,
+					on_create = function(t)
+						vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = t.bufnr })
+					end,
+				})
+			end
+			return yazi
+		end
 
-		local coderunner = require("toggleterm.terminal").Terminal:new({
-			cmd = vim.o.shell,
-			hidden = true,
-			direction = "float",
-			float_opts = float_opts,
-			close_on_exit = false,
-			on_create = function(t)
-				local bufnr = t.bufnr
-				vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { buffer = bufnr })
-			end,
-		})
+		local function get_coderunner()
+			if not coderunner then
+				coderunner = require("toggleterm.terminal").Terminal:new({
+					cmd = vim.o.shell,
+					hidden = true,
+					direction = "float",
+					float_opts = float_opts,
+					close_on_exit = false,
+					on_create = function(t)
+						vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { buffer = t.bufnr })
+					end,
+				})
+			end
+			return coderunner
+		end
 
 		return {
 			{
@@ -77,23 +88,22 @@ return {
 			{
 				"<leader>gl",
 				function()
-					lazygit:toggle()
+					get_lazygit():toggle()
 				end,
 				desc = "LazyGit",
 			},
 			{
 				"<leader>gf",
 				function()
-					yazi:toggle()
+					get_yazi():toggle()
 				end,
 				mode = { "n", "t" },
 				desc = "Yazi",
 			},
-
 			{
 				"<leader>cr",
 				function()
-					coderunner:toggle()
+					get_coderunner():toggle()
 				end,
 				mode = { "n", "t" },
 				desc = "Code Runner Terminal",

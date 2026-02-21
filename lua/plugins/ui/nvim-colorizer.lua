@@ -1,6 +1,5 @@
 return {
 	"NvChad/nvim-colorizer.lua",
-	event = "FileType",
 	ft = {
 		"html",
 		"css",
