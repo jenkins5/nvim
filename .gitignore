@@ -40,3 +40,10 @@ luac.out
 *.hex
 
 .DS_Store
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# CocoIndex
+.cocoindex_code/

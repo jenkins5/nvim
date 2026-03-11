@@ -9,7 +9,6 @@ local keymap = {
     { mode = mode_n,      from = "Q",               to = "<cmd>q<CR>",                 desc = "quit" },
     { mode = mode_v,      from = "Y",               to = "\"+y",                       desc = "yank to sytem clipboard" },
     { mode = mode_nv,     from = ";",               to = ":",                          desc = "command-line mode" },
-    { mode = mode_nv,     from = "`",               to = "~",                          desc = "toggle case" },
 
 		-- Movement
     { mode = mode_nx,     from = "u",               to = "k",                   desc = "move up" },
@@ -37,8 +36,8 @@ local keymap = {
 
 		-- Actions
     { mode = mode_n,      from = "l",               to = "u",                      desc = "undo" },
-    { mode = mode_nv,     from = "k",               to = "i",                      desc = "insert before cursor" },
-    { mode = mode_nv,     from = "K",               to = "I",                      desc = "insert at line start" },
+    { mode = mode_nx,     from = "k",               to = "i",                      desc = "insert before cursor" },
+    { mode = mode_nx,     from = "K",               to = "I",                      desc = "insert at line start" },
 
 		-- Search
     { mode = mode_n,      from = "=",               to = "nzz",                                  desc = "next search (centered)" },
@@ -50,9 +49,9 @@ local keymap = {
     -- { mode = mode_i,      from = "<c-y>",           to = "<ESC>A {}<ESC>i<CR><ESC>ko",                              desc = "insert braces block" },
     { mode = mode_n,      from = "\\v",             to = "v$h",                              desc = "visual select to line end -1" },
     { mode = mode_i,      from = "<c-a>",           to = "<ESC>A",                           desc = "append at line end" },
+    { mode = mode_i,      from = "<C-o>",           to = "<End><CR>",                        desc = "new line below" },
 
 		-- Window & splits
-    { mode = mode_n,      from = "<leader>w",       to = "<C-w>w",                 desc = "switch window" },
     { mode = mode_n,      from = "<leader>u",       to = "<C-w>k",                 desc = "move to window up" },
     { mode = mode_n,      from = "<leader>e",       to = "<C-w>j",                 desc = "move to window down" },
     { mode = mode_n,      from = "<leader>n",       to = "<C-w>h",                 desc = "move to window left" },

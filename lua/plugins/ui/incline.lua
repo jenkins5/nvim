@@ -1,6 +1,6 @@
 return {
 	"b0o/incline.nvim",
-	enabled = true,
+	enabled = false,
 	event = { "BufNewFile", "BufReadPre" },
 	config = function()
 		require("incline").setup({

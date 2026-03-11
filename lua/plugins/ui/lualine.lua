@@ -52,11 +52,12 @@ return {
 						end,
 					},
 				},
-				lualine_b = { "filename" },
-				lualine_c = {
-					-- { "filename", path = 1 },
+				lualine_b = {
 					{ "branch" },
 					{ "diff" },
+				},
+				lualine_c = {
+					{ "filename", path = 1 },
 					{ "diagnostics" },
 					{ macro },
 				},

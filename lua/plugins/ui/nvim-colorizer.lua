@@ -12,6 +12,15 @@ return {
 		"fish",
 	},
 	config = function()
-		require("colorizer").setup({})
+		require("colorizer").setup({
+			options = {
+				parsers = {
+					css = true,
+				},
+				display = {
+					mode = "background",
+				},
+			},
+		})
 	end,
 }

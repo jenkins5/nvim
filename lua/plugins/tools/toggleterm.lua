@@ -25,7 +25,7 @@ return {
 	},
 	keys = function()
 		local float_opts = { border = custom.border }
-		local lazygit, yazi, coderunner
+		local lazygit, yazi
 
 		local function get_lazygit()
 			if not lazygit then
@@ -57,30 +57,14 @@ return {
 			return yazi
 		end
 
-		local function get_coderunner()
-			if not coderunner then
-				coderunner = require("toggleterm.terminal").Terminal:new({
-					cmd = vim.o.shell,
-					hidden = true,
-					direction = "float",
-					float_opts = float_opts,
-					close_on_exit = false,
-					on_create = function(t)
-						vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { buffer = t.bufnr })
-					end,
-				})
-			end
-			return coderunner
-		end
-
 		return {
 			{
 				"<C-\\>",
-				"<cmd>1ToggleTerm direction=horizontal<cr>",
+				"<cmd>ToggleTerm direction=horizontal<cr>",
 				mode = { "n", "t" },
 				desc = "Toggle Horizontal Terminal",
 			},
-			{ "`", "<cmd>2ToggleTerm direction=vertical<cr>", mode = { "n", "t" }, desc = "Toggle Vertical Terminal" },
+			{ "`", "<cmd>ToggleTerm direction=vertical<cr>", mode = { "n", "t" }, desc = "Toggle Vertical Terminal" },
 
 			{ "<leader>tt", "<cmd>TermSelect<cr>", desc = "Select Terminal" },
 
@@ -99,14 +83,6 @@ return {
 				end,
 				mode = { "n", "t" },
 				desc = "Yazi",
-			},
-			{
-				"<leader>cr",
-				function()
-					get_coderunner():toggle()
-				end,
-				mode = { "n", "t" },
-				desc = "Code Runner Terminal",
 			},
 		}
 	end,
