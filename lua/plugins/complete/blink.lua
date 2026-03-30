@@ -189,7 +189,7 @@ local opts = {
 				end,
 				"fallback",
 			},
-			["C-f"] = { "accept", "fallback" },
+			["<C-f>"] = { "accept", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
 		},
@@ -199,8 +199,7 @@ local opts = {
 return {
 	"Saghen/blink.cmp",
 	dependencies = { "xzbdmw/colorful-menu.nvim" },
-	event = { "CursorHold", "CursorHoldI", "CmdlineEnter", "User AfterLoad" },
+	event = { "InsertEnter", "CmdlineEnter" },
 	version = "*",
 	opts = opts,
-	opts_extend = { "sources.completion.enabled_providers" },
 }

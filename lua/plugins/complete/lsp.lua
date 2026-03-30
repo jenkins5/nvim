@@ -63,7 +63,7 @@ local config = function()
 					vim.lsp.inlay_hint.enable(true)
 				end
 				if vim.fn.has("nvim-0.12") == 1 and client:supports_method("textDocument/documentColor") then
-					vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
+					vim.lsp.document_color.enable(true, { bufnr = args.buf }, { style = "virtual" })
 				end
 			end
 		end,
