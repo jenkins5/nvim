@@ -127,7 +127,13 @@ local function keys()
 		-- { "<leader>w", snack("grep"), desc = "live grep" },
 		-- { "<leader>r", snack("recent"), desc = "recent files" },
 		-- { "<leader>l", snack("undo"), desc = "undo history" },
-		{ "<leader>h",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+		{
+			"<leader>h",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Notification History",
+		},
 	}
 end
 

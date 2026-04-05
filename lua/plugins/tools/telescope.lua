@@ -151,7 +151,7 @@ local keys = function()
 		{ "<leader>th", "<cmd>Telescope help_tags<CR>", desc = "telescope help" },
 		{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },
 		{ "<leader>w", "<cmd>Telescope live_grep<CR>", desc = "live grep" },
-		{ "<leader>r", "<cmd>Telescope oldfiles<CR>", desc = "recent files" },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "recent files" },
 		{ "<leader>l", "<cmd>Telescope undo<CR>", desc = "undo tree" },
 	}
 end
@@ -167,7 +167,7 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
+		branch = "master",
 		dependencies = {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-lua/popup.nvim",
