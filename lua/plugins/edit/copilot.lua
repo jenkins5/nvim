@@ -4,6 +4,7 @@ return {
 	cmd = "Copilot",
 	build = ":Copilot auth",
 	event = "InsertEnter",
+	enabled = false,
 	opts = {
 		suggestion = {
 			enabled = true,

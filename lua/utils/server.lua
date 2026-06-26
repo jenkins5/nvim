@@ -10,6 +10,7 @@ M.lsp = {
 	"gopls",
 	"html",
 	"jdtls",
+	-- "jedi_language_server",
 	"jsonls",
 	"lua_ls",
 	"marksman",

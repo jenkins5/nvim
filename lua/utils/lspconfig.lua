@@ -72,6 +72,30 @@ M.config = {
 			},
 		},
 	},
+	jedi_language_server = {
+		cmd = { "jedi-language-server" },
+		filetypes = { "python" },
+		-- 让 jedi 用「项目自己的 venv」解析 import,否则找不到 angr/unicorn/frida 等依赖
+		before_init = function(params, config)
+			local root = config.root_dir or params.rootPath or vim.fn.getcwd()
+			local py
+			for _, name in ipairs({ "venv", ".venv", "env" }) do
+				local p = root .. "/" .. name .. "/bin/python"
+				if vim.uv.fs_stat(p) then
+					py = p
+					break
+				end
+			end
+			if not py and vim.env.VIRTUAL_ENV then
+				py = vim.env.VIRTUAL_ENV .. "/bin/python"
+			end
+			if py and vim.uv.fs_stat(py) then
+				params.initializationOptions = vim.tbl_deep_extend("force", params.initializationOptions or {}, {
+					workspace = { environmentPath = py },
+				})
+			end
+		end,
+	},
 	jdtls = {
 		cmd = { "jdtls" },
 	},
